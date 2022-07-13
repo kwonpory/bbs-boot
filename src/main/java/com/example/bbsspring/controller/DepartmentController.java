@@ -1,7 +1,7 @@
 package com.example.bbsspring.controller;
 
 import com.example.bbsspring.domain.Department;
-import com.example.bbsspring.service.DepartmentService;
+import com.example.bbsspring.service.MemoryDepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +13,10 @@ import java.util.List;
 @Controller
 public class DepartmentController {
 
-    private final DepartmentService departmentService;
+    private final MemoryDepartmentService departmentService;
 
     @Autowired
-    public DepartmentController(DepartmentService departmentService) {
+    public DepartmentController(MemoryDepartmentService departmentService) {
         this.departmentService = departmentService;
     }
 
@@ -34,11 +34,7 @@ public class DepartmentController {
 
     @PostMapping("/add")
     public String add(DepartmentForm form) {
-        Department department = new Department();
-        department.setPartName(form.getPartName());
-        department.setContact(form.getContact());
-
-        departmentService.add(department);
+        departmentService.add(form);
         return "redirect:/";
     }
 
@@ -46,18 +42,12 @@ public class DepartmentController {
     public String updateForm(Long id, Model model) {
         Department data = departmentService.findOne(id).get();
         model.addAttribute("data", data);
-
         return "updateDepartment";
     }
 
     @PostMapping("/update")
     public String update(DepartmentForm form) {
-        Department department = new Department();
-        department.setId(form.getId());
-        department.setPartName(form.getPartName());
-        department.setContact(form.getContact());
-
-        departmentService.update(department);
+        departmentService.update(form);
         return "redirect:/";
     }
 

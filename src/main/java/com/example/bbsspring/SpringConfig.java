@@ -1,7 +1,7 @@
 package com.example.bbsspring;
 
 import com.example.bbsspring.repository.DepartmentRepository;
-import com.example.bbsspring.service.DepartmentService;
+import com.example.bbsspring.service.MemoryDepartmentService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,8 +17,8 @@ public class SpringConfig {
     }
 
     @Bean
-    public DepartmentService departmentService() {
-        return new DepartmentService(departmentRepository());
+    public MemoryDepartmentService departmentService() {
+        return new MemoryDepartmentService(departmentRepository());
     }
 
     @Bean
