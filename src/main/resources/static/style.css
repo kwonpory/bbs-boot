@@ -1,0 +1,19 @@
+table {
+    border-collapse: collapse;
+}
+td {
+    text-align : center;
+    padding : 20px 25px;
+}
+th {
+    padding : 12px 25px;
+}
+thead {
+    background : darkgray;
+}
+tbody tr:nth-child(even) {
+    background : ivory;
+}
+tbody tr:hover {
+    background : aliceblue;
+}

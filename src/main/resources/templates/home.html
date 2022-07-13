@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>department</title>
+    <script src="https://use.fontawesome.com/releases/v6.1.1/js/all.js"></script>
+    <link th:href="@{/style.css}" type="text/css" rel="stylesheet"/>
+</head>
 <body>
 <div>
-    <a href="/create">부서 추가</a>
+    <div id="add_department">
+        <a href="/create">부서 추가</a>
+    </div>
     <table>
         <thead>
         <tr>
             <th>ID</th>
             <th>부서명</th>
             <th>연락처</th>
-            <th>수정/삭제</th>
+            <th>수정</th>
+            <th>삭제</th>
         </tr>
         </thead>
+
         <tbody>
         <tr th:each="department : ${departments}">
             <td th:text="${department.id}" id="id"></td>
@@ -20,12 +29,13 @@
             <td>
                 <form th:action="@{'/updateForm'}" method="post">
                     <input type="hidden" name="id" th:value="${department.id}" />
-                    <button>수정</button>
+                    <button title="수정"><i class="fa-solid fa-pen"></i></button>
                 </form>
-
+            </td>
+            <td>
                 <form th:action="@{'/delete'}" method="post">
                     <input type="hidden" name="id" th:value="${department.id}" />
-                    <button>삭제</button>
+                    <button title="삭제"><i class="fa-solid fa-trash-can"></i></button>
                 </form>
             </td>
         </tr>
