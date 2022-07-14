@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>직원 추가</title>
+</head>
+<body>
+<div>
+    <h2>직원 추가</h2>
+    <hr>
+    <form action="/editEmployee" method="post">
+        이름 <input type="text" id="name" name="name"><br>
+        나이 <input type="text" id="age" name="age"><br>
+        경력 <input type="text" id="career" name="career"><br>
+        부서
+        <select name="department">
+            <option th:each="department : ${departments}" th:value="${department.id}" th:text="${department.partName}"></option>
+        </select>
+        <button type="submit">OK</button>
+    </form>
+</div>
+</body>
+</html>

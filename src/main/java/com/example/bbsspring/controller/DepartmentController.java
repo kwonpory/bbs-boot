@@ -20,11 +20,11 @@ public class DepartmentController {
         this.departmentService = departmentService;
     }
 
-    @GetMapping("/")
-    public String home(Model model) {
+    @GetMapping("/list")
+    public String list(Model model) {
         List<Department> departments = departmentService.find();
         model.addAttribute("departments", departments);
-        return "home";
+        return "departmentList";
     }
 
     @GetMapping("/create")

@@ -40,7 +40,7 @@ public class DepartmentRepository {
 
     public void edit(Department department) {
         jdbcTemplate.update(
-                "update department set partName = ?, contact = ? where id = ?",
+                "update department set part_name = ?, contact = ? where id = ?",
                 department.getPartName(), department.getContact(), department.getId()
         );
     }
@@ -53,7 +53,7 @@ public class DepartmentRepository {
         return (rs, rowNum) -> {
             Department department = new Department();
             department.setId(rs.getLong("id"));
-            department.setPartName(rs.getString("partName"));
+            department.setPartName(rs.getString("part_name"));
             department.setContact(rs.getString("contact"));
             return department;
         };

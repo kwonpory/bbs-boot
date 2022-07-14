@@ -3,10 +3,12 @@ package com.example.bbsspring.service;
 import com.example.bbsspring.controller.DepartmentForm;
 import com.example.bbsspring.domain.Department;
 import com.example.bbsspring.repository.DepartmentRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 public class MemoryDepartmentService implements DepartmentService {
     private final DepartmentRepository repository;
     Department department = new Department();
