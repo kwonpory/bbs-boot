@@ -1,8 +1,14 @@
 package com.example.bbsspring.domain;
 
+import javax.persistence.*;
+
+@Entity
 public class Department {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String partName;
+//    @Column(name = "part_name")
+    private String part_name;
     private String contact;
 
     public Long getId() {
@@ -14,11 +20,11 @@ public class Department {
     }
 
     public String getPartName() {
-        return partName;
+        return part_name;
     }
 
     public void setPartName(String partName) {
-        this.partName = partName;
+        this.part_name = partName;
     }
 
     public String getContact() {

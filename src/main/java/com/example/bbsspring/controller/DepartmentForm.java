@@ -2,15 +2,15 @@ package com.example.bbsspring.controller;
 
 public class DepartmentForm {
     private Long id;
-    private String partName;
+    private String part_name;
     private String contact;
 
     public String getPartName() {
-        return partName;
+        return part_name;
     }
 
     public void setPartName(String partName) {
-        this.partName = partName;
+        this.part_name = partName;
     }
 
     public String getContact() {

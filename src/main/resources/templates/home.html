@@ -1,46 +1,34 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>department</title>
-    <script src="https://use.fontawesome.com/releases/v6.1.1/js/all.js"></script>
-    <link th:href="@{/style.css}" type="text/css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>employee</title>
+    <link href="/style.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
-<div>
-    <div id="add_department">
-        <a href="/create">부서 추가</a>
-    </div>
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>부서명</th>
-            <th>연락처</th>
-            <th>수정</th>
-            <th>삭제</th>
-        </tr>
-        </thead>
+<button type="button" onclick="location.href='/addEmployee'">직원 추가</button>
+<button type="button" onclick="location.href='/list'">부서 목록</button>
+<table>
+    <thead>
+    <tr>
+        <th>이름</th>
+        <th>나이</th>
+        <th>경력</th>
+        <th>부서</th>
+        <th>수정 / 삭제</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employee : ${employees}">
+        <td th:text="${employee.name}"></td>
+        <td th:text="${employee.age}"></td>
+        <td th:text="${employee.career}"></td>
+        <td th:text="${employee.department.partName}"></td>
+        <td>
 
-        <tbody>
-        <tr th:each="department : ${departments}">
-            <td th:text="${department.id}" id="id"></td>
-            <td th:text="${department.partName}"></td>
-            <td th:text="${department.contact}"></td>
-            <td>
-                <form th:action="@{'/updateForm'}" method="post">
-                    <input type="hidden" name="id" th:value="${department.id}" />
-                    <button title="수정"><i class="fa-solid fa-pen"></i></button>
-                </form>
-            </td>
-            <td>
-                <form th:action="@{'/delete'}" method="post">
-                    <input type="hidden" name="id" th:value="${department.id}" />
-                    <button title="삭제"><i class="fa-solid fa-trash-can"></i></button>
-                </form>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+        </td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
