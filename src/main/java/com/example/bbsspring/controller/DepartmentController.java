@@ -24,36 +24,42 @@ public class DepartmentController {
     public String list(Model model) {
         List<Department> departments = departmentService.find();
         model.addAttribute("departments", departments);
-        return "departmentList";
+        return "/department/departmentList";
     }
 
     @GetMapping("/create")
     public String createForm() {
-        return "createDepartment";
+        return "/department/createDepartment";
     }
 
     @PostMapping("/add")
-    public String add(DepartmentForm form) {
+    public String add(DepartmentForm form, Model model) {
         departmentService.add(form);
-        return "redirect:/";
+        List<Department> departments = departmentService.find();
+        model.addAttribute("departments", departments);
+        return "/department/departmentList";
     }
 
     @PostMapping("/updateForm")
     public String updateForm(Long id, Model model) {
         Department data = departmentService.findOne(id).get();
         model.addAttribute("data", data);
-        return "updateDepartment";
+        return "/department/updateDepartment";
     }
 
     @PostMapping("/update")
-    public String update(DepartmentForm form) {
+    public String update(DepartmentForm form, Model model) {
         departmentService.update(form);
-        return "redirect:/";
+        List<Department> departments = departmentService.find();
+        model.addAttribute("departments", departments);
+        return "/department/departmentList";
     }
 
     @PostMapping("/delete")
-    public String delete(Long id) {
+    public String delete(Long id, Model model) {
         departmentService.delete(id);
-        return "redirect:/";
+        List<Department> departments = departmentService.find();
+        model.addAttribute("departments", departments);
+        return "/department/departmentList";
     }
 }

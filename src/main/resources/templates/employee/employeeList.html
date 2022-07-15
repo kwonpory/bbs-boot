@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>employee</title>
-    <link href="/style.css" type="text/css" rel="stylesheet" />
+    <link href="/css/style.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 <button type="button" onclick="location.href='/addEmployee'">직원 추가</button>
@@ -15,7 +15,8 @@
         <th>나이</th>
         <th>경력</th>
         <th>부서</th>
-        <th>수정 / 삭제</th>
+        <th>수정</th>
+        <th>삭제</th>
     </tr>
     </thead>
     <tbody>
@@ -23,9 +24,18 @@
         <td th:text="${employee.name}"></td>
         <td th:text="${employee.age}"></td>
         <td th:text="${employee.career}"></td>
-        <td th:text="${employee.department.partName}"></td>
+        <td th:text="${employee.department.part_name}"></td>
         <td>
-
+            <form th:action="@{'/editEmployeeForm'}" method="post">
+                <input type="hidden" name="id" th:value="${employee.id}" />
+                <button>수정</button>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{'/deleteEmployee'}" method="post">
+                <input type="hidden" name="id" th:value="${employee.id}" />
+                <button>삭제</button>
+            </form>
         </td>
     </tr>
     </tbody>

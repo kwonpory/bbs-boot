@@ -27,26 +27,40 @@ public class EmployeeController {
     public String home(Model model) {
         List<Employee> employees = employeeService.find();
         model.addAttribute("employees", employees);
-        return "home";
+        return "/employee/employeeList";
     }
 
     @GetMapping("/addEmployee")
     public String createEmployeeForm(Model model) {
         List<Department> departments = departmentService.find();
         model.addAttribute("departments", departments);
-        return "editEmployee";
+        return "/employee/createEmployee";
+    }
+
+    @PostMapping("/createEmployee")
+    public String createEmployee(EmployeeForm form) {
+        employeeService.add(form);
+        return "redirect:/";
+    }
+
+    @PostMapping("/editEmployeeForm")
+    public String editEmployeeForm(Long id, Model model) {
+        Employee employee = employeeService.findOne(id).get();
+        List<Department> departments = departmentService.find();
+        model.addAttribute("employee", employee);
+        model.addAttribute("departments", departments);
+        return "/employee/editEmployee";
     }
 
     @PostMapping("/editEmployee")
     public String editEmployee(EmployeeForm form) {
-        Employee employee = new Employee();
-        employee.setName(form.getName());
-        employee.setAge(form.getAge());
-        employee.setCareer(form.getCareer());
-        Optional<Department> department = employeeService.findDepartment(form.getDepartment());
-        employee.setDepartment(department.get());
+        employeeService.update(form);
+        return "redirect:/";
+    }
 
-        employeeService.add(employee);
+    @PostMapping("/deleteEmployee")
+    public String deleteEmployee(Long id) {
+        employeeService.delete(id);
         return "redirect:/";
     }
 }

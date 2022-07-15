@@ -3,11 +3,13 @@ package com.example.bbsspring.service;
 import com.example.bbsspring.controller.DepartmentForm;
 import com.example.bbsspring.domain.Department;
 import com.example.bbsspring.repository.DepartmentRepository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 @Transactional
 public class MemoryDepartmentService implements DepartmentService {
     private final DepartmentRepository repository;
@@ -22,7 +24,7 @@ public class MemoryDepartmentService implements DepartmentService {
      */
     @Override
     public void add(DepartmentForm form) {
-        department.setPartName(form.getPartName());
+        department.setPart_name(form.getPart_name());
         department.setContact(form.getContact());
 
         repository.save(department);
@@ -46,7 +48,7 @@ public class MemoryDepartmentService implements DepartmentService {
     @Override
     public void update(DepartmentForm form) {
         department.setId(form.getId());
-        department.setPartName(form.getPartName());
+        department.setPart_name(form.getPart_name());
         department.setContact(form.getContact());
 
         repository.edit(department);

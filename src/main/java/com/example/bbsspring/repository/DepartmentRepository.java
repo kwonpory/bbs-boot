@@ -1,18 +1,21 @@
 package com.example.bbsspring.repository;
 
 import com.example.bbsspring.domain.Department;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.util.*;
 
+@Repository
 public class DepartmentRepository {
 
     private final JdbcTemplate jdbcTemplate;
-
+    @Autowired
     public DepartmentRepository(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
@@ -22,7 +25,7 @@ public class DepartmentRepository {
         jdbcInsert.withTableName("department").usingGeneratedKeyColumns("id");
 
         Map<String, Object> parameters = new HashMap<>();
-        parameters.put("partName", department.getPartName());
+        parameters.put("part_name", department.getPart_name());
         parameters.put("contact", department.getContact());
 
         Number key = jdbcInsert.executeAndReturnKey(new MapSqlParameterSource(parameters));
@@ -41,7 +44,7 @@ public class DepartmentRepository {
     public void edit(Department department) {
         jdbcTemplate.update(
                 "update department set part_name = ?, contact = ? where id = ?",
-                department.getPartName(), department.getContact(), department.getId()
+                department.getPart_name(), department.getContact(), department.getId()
         );
     }
 
@@ -53,7 +56,7 @@ public class DepartmentRepository {
         return (rs, rowNum) -> {
             Department department = new Department();
             department.setId(rs.getLong("id"));
-            department.setPartName(rs.getString("part_name"));
+            department.setPart_name(rs.getString("part_name"));
             department.setContact(rs.getString("contact"));
             return department;
         };

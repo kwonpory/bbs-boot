@@ -8,13 +8,13 @@
 <div>
     <h2>직원 추가</h2>
     <hr>
-    <form action="/editEmployee" method="post">
+    <form action="/createEmployee" method="post">
         이름 <input type="text" id="name" name="name"><br>
         나이 <input type="text" id="age" name="age"><br>
         경력 <input type="text" id="career" name="career"><br>
         부서
         <select name="department">
-            <option th:each="department : ${departments}" th:value="${department.id}" th:text="${department.partName}"></option>
+            <option th:each="department : ${departments}" th:value="${department.id}" th:text="${department.part_name}"></option>
         </select>
         <button type="submit">OK</button>
     </form>

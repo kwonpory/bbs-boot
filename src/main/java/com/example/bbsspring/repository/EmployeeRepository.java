@@ -2,29 +2,19 @@ package com.example.bbsspring.repository;
 
 import com.example.bbsspring.domain.Department;
 import com.example.bbsspring.domain.Employee;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
-public class EmployeeRepository {
-    private final EntityManager em;
+@Repository
+public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
-    public EmployeeRepository(EntityManager em) {
-        this.em = em;
-    }
+    @Query("SELECT d FROM Department d where d.id = :id")
+    public Optional<Department> findDepartment(Long id);
 
-    public void save(Employee employee) {
-        em.persist(employee);
-    }
-
-    public List<Employee> findAll() {
-        return em.createQuery("select e from Employee e", Employee.class)
-                .getResultList();
-    }
-
-    public Optional<Department> findDepartment(Long id) {
-        Department department = em.find(Department.class, id);
-        return Optional.ofNullable(department);
-    }
+    public List<Employee> findByNameLike(String keyword);
 }
