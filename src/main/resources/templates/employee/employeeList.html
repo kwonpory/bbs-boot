@@ -8,6 +8,10 @@
 <body>
 <button type="button" onclick="location.href='/addEmployee'">직원 추가</button>
 <button type="button" onclick="location.href='/list'">부서 목록</button>
+<form action="/search" method="post">
+    <input type="text" id="keyword" name="keyword" placeholder="검색하십셔~~^^7">
+    <button type="submit">검색</button>
+</form>
 <table>
     <thead>
     <tr>

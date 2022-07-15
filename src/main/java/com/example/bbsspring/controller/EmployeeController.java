@@ -63,4 +63,12 @@ public class EmployeeController {
         employeeService.delete(id);
         return "redirect:/";
     }
+
+    @PostMapping("/search")
+    public String search(String keyword, Model model) {
+        List<Employee> employees = employeeService.search(keyword);
+        model.addAttribute("employees", employees);
+        System.out.println(employees);
+        return "/employee/employeeList";
+    }
 }

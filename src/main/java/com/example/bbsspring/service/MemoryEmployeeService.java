@@ -61,7 +61,7 @@ public class MemoryEmployeeService implements EmployeeService {
 
     @Override
     public List<Employee> search(String keyword) {
-        return null;
+        return employeeRepository.findByNameLike(keyword);
     }
 
     public void delete(Long id) {
