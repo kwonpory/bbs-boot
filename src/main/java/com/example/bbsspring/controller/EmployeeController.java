@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class EmployeeController {
@@ -45,7 +44,7 @@ public class EmployeeController {
 
     @PostMapping("/editEmployeeForm")
     public String editEmployeeForm(Long id, Model model) {
-        Employee employee = employeeService.findOne(id).get();
+        Employee employee = employeeService.findOne(id);
         List<Department> departments = departmentService.find();
         model.addAttribute("employee", employee);
         model.addAttribute("departments", departments);
@@ -68,7 +67,6 @@ public class EmployeeController {
     public String search(String keyword, Model model) {
         List<Employee> employees = employeeService.search(keyword);
         model.addAttribute("employees", employees);
-        System.out.println(employees);
         return "/employee/employeeList";
     }
 }

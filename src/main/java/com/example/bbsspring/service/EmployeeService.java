@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface EmployeeService {
     public void add(EmployeeForm form);
     public List<Employee> find();
-    public Optional<Employee> findOne(Long id);
+    public Employee findOne(Long id);
     public Optional<Department> findDepartment(Long id);
     public void update(EmployeeForm form);
     public List<Employee> search(String keyword);

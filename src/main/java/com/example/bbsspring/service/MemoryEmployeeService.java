@@ -37,8 +37,8 @@ public class MemoryEmployeeService implements EmployeeService {
     }
 
     @Override
-    public Optional<Employee> findOne(Long id) {
-        return employeeRepository.findById(id);
+    public Employee findOne(Long id) {
+        return employeeRepository.findById(id).get();
     }
 
     @Override
